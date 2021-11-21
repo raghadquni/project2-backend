@@ -1,8 +1,14 @@
-// const mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
-// const productSchema = new mongoose.Schema({
-//     productName: { type: String, required: true },
-//     date: { type: Date, default: new Date() },
-//     isDeleted: { type: String, default: false },
-//     someNumber: { type: Number, required: true, unique: true },
-//   });
+const productSchema = new mongoose.Schema({
+    productName: { type: String, required: true },
+    description: { type: String, required: true },
+    productImg: { type: String, required: true , unique: true},
+    categories: { type: String, required: true},
+    size: [{ type: String, required: true}],
+    color: { type: String, required: true},
+    price: { type: Number, required: true},
+
+  });
+
+  module.exports = mongoose.model("products", productSchema);

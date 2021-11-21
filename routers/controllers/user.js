@@ -2,14 +2,14 @@ const userModel = require("./../../db/models/userSchema.js");
 
 
 const createUser = (req, res) =>{
-    const { userName, email, password, phoneNumber, isAdmin , isDeleted} = req.body;
+    const { userName, email, password, phoneNumber, isAdmin , isDel} = req.body;
       const newUser = new userModel({
         userName, 
         email,
         password,
         phoneNumber,
         isAdmin,
-        isDeleted
+        isDel
       });
       newUser 
         .save()
@@ -22,9 +22,9 @@ const createUser = (req, res) =>{
     };
 
     const getUser = (req, res) =>{
-        const {userName} = req.body
+        const {id} = req.body
             userModel
-              .findOne({userName : userName })
+              .findOne({_id : id })
               .then((result) => {
                 res.send(result);
               })
@@ -45,28 +45,32 @@ const createUser = (req, res) =>{
     };
 
 
-    // const deleteuser = (req, res) => {
-    //             const { userName } = req.params;
-    //                 let index = 0;
-    //                 try {
-    //                   const found = userModel.find((item, i) => {
-    //                     index = i;
-    //                     return item.userName == userName;
-    //                   });
-                  
-    //                   if (found) {
-    //                     if (found.isDel) {
-    //                       res.status(404).json("is deleted");
-    //                     } else {
-    //                         userModel[index].isDel = true;
-    //                       res.status(200).json(userModel);
-    //                     }
-    //                   } else res.status(400).json("not found");
-    //                 } catch (error) {
-    //                   res.status(400).json(error);
-    //                 }
-    //               };
-          
+    const updateUser = (req, res) => {     
+        const { id } = req.params;  
+        const { userName, password, email} = req.body;   
+        userModel
+        .findByIdAndUpdate({_id: id},{userName: userName, password: password, email: email})
+        .then(() => {
+            res.json("Updated")
+        })
+        .catch((err) => {
+            res.send(err);
+        })
+    }
+
+
+    const deleteuser = (req, res) => {
+        const { id } = req.params;
+        userModel
+        .remove({_id: id})
+        .then(() => {
+            res.json("User Deleted")
+        })
+        .catch((err) => {
+            res.send(err);
+        })
+    }
+
     
 
-    module.exports = {createUser, getUser, getAllUsers}
+    module.exports = {createUser, getUser, getAllUsers, updateUser, deleteuser}
