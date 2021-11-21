@@ -5,6 +5,7 @@ const morgan = require("morgan");
 const db = require("./db/db.js")
 const userRouter = require("./routers/routes/user");
 const productRouter = require("./routers/routes/product");
+const roleRouter = require("./routers/routes/role");
 
 
 
@@ -16,7 +17,11 @@ app.use(cors());
 app.use(morgan("dev"));
 
 app.use("/users", userRouter);
-app.use("/products", productRouter)
+app.use("/products", productRouter);
+app.use("/roles", roleRouter);
+
+
+
 
 
 const PORT = process.env.PORT || 5000;
