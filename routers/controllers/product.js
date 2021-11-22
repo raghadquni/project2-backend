@@ -49,6 +49,18 @@ const createNewProduct = (req, res) =>{
           };
 
 
+        //   const catgoProduct = (req, res) => {
+        //     const {categories}=req.body;
+        //     productModel
+        //       .find({categories:categories})
+        //       .then((result) => {
+        //         res.send(result);
+        //       })
+        //       .catch((err) => {
+        //         res.send(err);
+        //       });
+        //   };
+
     const updateProduct = (req, res) => {     
             const { id } = req.params;  
             const { productName, description, productImg, categories, size, color, price} = req.body;   
