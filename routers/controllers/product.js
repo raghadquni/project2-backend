@@ -39,7 +39,7 @@ const createNewProduct = (req, res) =>{
     const getOneProdect = (req, res) =>{
         const {id} = req.body
         productModel
-              .findOne({_id : id })
+              .findById({_id })
               .then((result) => {
                 res.send(result);
               })
@@ -49,17 +49,41 @@ const createNewProduct = (req, res) =>{
           };
 
 
-        //   const catgoProduct = (req, res) => {
-        //     const {categories}=req.body;
-        //     productModel
-        //       .find({categories:categories})
-        //       .then((result) => {
-        //         res.send(result);
-        //       })
-        //       .catch((err) => {
-        //         res.send(err);
-        //       });
-        //   };
+          const dressProduct = (req, res) => {
+            const {categories}= req.params;
+            productModel
+              .find({categories:"dress"})
+              .then((result) => {
+                res.send(result);
+              })
+              .catch((err) => {
+                res.send(err);
+              });
+          };
+
+          const shoesProduct = (req, res) => {
+            const {categories}= req.params;
+            productModel
+              .find({categories:"SHOES"})
+              .then((result) => {
+                res.send(result);
+              })
+              .catch((err) => {
+                res.send(err);
+              });
+          };
+
+          const topProduct = (req, res) => {
+            const {categories}= req.params;
+            productModel
+              .find({categories:"TOPS"})
+              .then((result) => {
+                res.send(result);
+              })
+              .catch((err) => {
+                res.send(err);
+              });
+          };
 
     const updateProduct = (req, res) => {     
             const { id } = req.params;  
@@ -87,4 +111,4 @@ const createNewProduct = (req, res) =>{
             })
         }
 
-    module.exports = {createNewProduct, getAllProduct, getOneProdect, updateProduct, deleteProduct}
+    module.exports = {createNewProduct, getAllProduct, getOneProdect, updateProduct, deleteProduct, dressProduct, shoesProduct, topProduct}
