@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
     password: { type: String, required: true},
     isDel: { type: Boolean, default: false },
     phoneNumber: [{ type: Number}],
-    cart : [{ type: mongoose.Schema.Types.ObjectId, ref: "products" }],
+    cart : [{ type: mongoose.Schema.Types.ObjectId, ref: "Cart" }],
     
   });
 

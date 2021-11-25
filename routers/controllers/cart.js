@@ -111,4 +111,4 @@ const createNewProduct = (req, res) =>{
             })
         }
 
-    module.exports = {}
+    // module.exports = {}

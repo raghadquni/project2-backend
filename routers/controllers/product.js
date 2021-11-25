@@ -39,7 +39,7 @@ const createNewProduct = (req, res) =>{
     const getOneProdect = (req, res) =>{
         const {id} = req.body
         productModel
-              .findById({_id })
+              .findById({_id : id })
               .then((result) => {
                 res.send(result);
               })
