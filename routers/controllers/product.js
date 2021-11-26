@@ -38,7 +38,7 @@ const createNewProduct = (req, res) =>{
 
     const getlastProduct = (req, res) =>{
       productModel
-      .find({}).sort({}).limit(5)
+      .find({}).sort({}).limit(20)
       .then((result) => {
         res.send(result);
       })
