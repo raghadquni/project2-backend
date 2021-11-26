@@ -1,3 +1,4 @@
+const { json } = require("express");
 const productModel = require("./../../db/models/productSchema");
 
 
@@ -35,6 +36,16 @@ const createNewProduct = (req, res) =>{
     };
 
 
+    const getlastProduct = (req, res) =>{
+      productModel
+      .find({}).sort({}).limit(5)
+      .then((result) => {
+        res.send(result);
+      })
+      .catch((err) => {
+        res.send(err);
+      });
+  };
 
     const getOneProdect = (req, res) =>{
         const {id} = req.body
@@ -61,6 +72,19 @@ const createNewProduct = (req, res) =>{
               });
           };
 
+
+          const bottomProduct = (req, res) => {
+            const {categories}= req.params;
+            productModel
+              .find({categories:"BottomClothes"})
+              .then((result) => {
+                res.send(result);
+              })
+              .catch((err) => {
+                res.send(err);
+              });
+          };
+
           const shoesProduct = (req, res) => {
             const {categories}= req.params;
             productModel
@@ -72,6 +96,7 @@ const createNewProduct = (req, res) =>{
                 res.send(err);
               });
           };
+
 
           const topProduct = (req, res) => {
             const {categories}= req.params;
@@ -111,4 +136,4 @@ const createNewProduct = (req, res) =>{
             })
         }
 
-    module.exports = {createNewProduct, getAllProduct, getOneProdect, updateProduct, deleteProduct, dressProduct, shoesProduct, topProduct}
+    module.exports = {createNewProduct, getAllProduct, getOneProdect, updateProduct, deleteProduct, dressProduct, shoesProduct, topProduct, bottomProduct, getlastProduct}

@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
-const db = require("./db/db.js")
+require("./db/db.js")
 const userRouter = require("./routers/routes/user");
 const productRouter = require("./routers/routes/product");
 // const roleRouter = require("./routers/routes/role");

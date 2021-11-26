@@ -1,5 +1,5 @@
 const express = require("express")
-const {createNewProduct, getAllProduct, getOneProdect, updateProduct, deleteProduct, dressProduct, shoesProduct, topProduct} = require("./../controllers/product.js")
+const {createNewProduct, getAllProduct, getOneProdect, updateProduct, deleteProduct, dressProduct, shoesProduct, topProduct, bottomProduct, getlastProduct} = require("./../controllers/product.js")
 const productRouter = express.Router()
 
 
@@ -12,6 +12,10 @@ productRouter.delete("/deleteProduct/:id", deleteProduct)
 productRouter.get("/categ/dress", dressProduct)
 productRouter.get("/categ/shoes", shoesProduct)
 productRouter.get("/categ/tops", topProduct)
+productRouter.get("/categ/BottomClothes", bottomProduct)
+productRouter.get("/categ/dress", dressProduct)
+productRouter.get("/lastproduct", getlastProduct)
+
 
 
 

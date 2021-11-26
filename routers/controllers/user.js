@@ -84,39 +84,44 @@ const createUser = (req, res) =>{
           res.send(result);
         })
         .catch((err) => {
-          res.send(err);
+          console.log("err", err);
+
+          res.status(400).send(err);
         });
     };
 
 
     const getAllCart = (req, res) => {
-      const { id } = req.params;
+      const { email } = req.params;
       userModel
-        .find({ _id : id })
+        .findOne({ email : email })
         .populate("cart")
         .exec()
         .then((result) => {
-          res.send(result[0].cart);
+          res.send(result.cart);
         })
         .catch((err) => {
-          res.send(err);
+          console.log(err)
+          
+          res.status(400).send(err);
         });
     };
 
 
     const removeFromCart = (req, res) => {
-      const { email, _id } = req.params;
+      const { email, id } = req.params;
       userModel
         .findOneAndUpdate(
           { email: email },
-          { $pull: { cart: _id } },
+          { $pull: { cart: id } },
           { new: true }
         )
         .then((result) => {
           res.send(result);
         })
         .catch((err) => {
-          res.send(err);
+          console.log("err", err);
+          res.status(400).send(err);
         });
     };
     

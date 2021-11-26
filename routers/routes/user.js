@@ -8,7 +8,7 @@ userRouter.get("/user", getUser)
 userRouter.get("/allUser", getAllUsers)
 userRouter.put("/user/:id", updateUser)
 userRouter.delete("/user/:id", deleteuser)
-userRouter.get("/cart/:id", getAllCart);
+userRouter.get("/cart/:email", getAllCart);
 userRouter.put("/cart/:email/:id", UserCart);
 userRouter.put("/remove/:email/:id", removeFromCart);
 
